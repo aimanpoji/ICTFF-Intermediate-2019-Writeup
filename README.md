@@ -89,7 +89,6 @@ When we run the decryptor file it will ask for a key to print the flag
 ```
 decryptor: python 3.6 byte-compiled
 ```
-A python compiled file =D
 Decompiled it using ``` uncompyle6 ```
 ```
 key = input('key:')
@@ -104,18 +103,22 @@ print(ci)
 From the code,
 
 encrypted bytes ^ unknown key = known plaintext
+
 We can change the position
+
 encrypted bytes ^ known plaintext = unknown key
 
-we have encrypted bytes and known plaintext
-the known plaintext attact is the first 5 chars of the flag's format which is
-``` "uitm{" ```
+We have encrypted bytes and known plaintext
+
+The known plaintext attack is the first 5 chars of the flag's format which is
+``` uitm{ ```
 Run it and enter ``` uitm{ ```
 ```
 key:uitm{
 bytearray(b'yFk*}T@M\x18Cm\\F\x18E~Vo\x136Sfe\x18Cm\\f:')
 ```
 So the first 5 byte from the output is the key ``` yFk*} ```
+
 Run again and enter it with the known key and we get the flag
 ```
 key:yFk*} 
@@ -124,4 +127,11 @@ bytearray(b'uitm{XoR_EasY_CrypT0_Iz_Easy}')
 Flag: uitm{XoR_EasY_CrypT0_Iz_Easy}
 
 
+## bin300
 
+This challenge is bit difficult for me.
+I managed to solve it after the ctf ended.
+
+So this bin300.exe is a windows 32bit binary
+
+Using ida
