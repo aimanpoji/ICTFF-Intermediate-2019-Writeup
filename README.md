@@ -74,9 +74,54 @@ Copy the line and replace it on this line
 ```
 Console.WriteLine("Nope !")
 ```
-Compile and run the program with the encrypted strings.
+Compile and run the program with the encrypted strings as the argument.
 ```
 .\bin1003.exe 6tLo2vauZpjGYJpmvuievo7c0qTKZpxijtyK+g==
 Flag : }EnG1N3eRinG_Ot_3M0cL3W{mtiu !
 ```
 The flag is uitm{W3LcoM3_tO_GniRe3N1GnE}
+
+## bin200
+This challenge provide 2 files
+decryptor and flag
+When we run the decryptor file it will ask for a key to print the flag
+
+```
+decryptor: python 3.6 byte-compiled
+```
+A python compiled file =D
+Decompiled it using ``` uncompyle6 ```
+```
+key = input('key:')
+ci = bytearray()
+with open('flag', 'rb') as (f):
+    te = f.read()
+    for i in range(len(te)):
+        ci.append(te[i] ^ ord(key[(i % len(key))]))
+
+print(ci)
+```
+From the code,
+
+encrypted bytes ^ unknown key = known plaintext
+We can change the position
+encrypted bytes ^ known plaintext = unknown key
+
+we have encrypted bytes and known plaintext
+the known plaintext attact is the first 5 chars of the flag's format which is
+``` "uitm{" ```
+Run it and enter ``` uitm{ ```
+```
+key:uitm{
+bytearray(b'yFk*}T@M\x18Cm\\F\x18E~Vo\x136Sfe\x18Cm\\f:')
+```
+So the first 5 byte from the output is the key ``` yFk*} ```
+Run again and enter it with the known key and we get the flag
+```
+key:yFk*} 
+bytearray(b'uitm{XoR_EasY_CrypT0_Iz_Easy}')
+```
+Flag: uitm{XoR_EasY_CrypT0_Iz_Easy}
+
+
+
